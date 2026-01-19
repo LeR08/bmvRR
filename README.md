@@ -15,15 +15,24 @@ L'application est configurée par défaut en **mode démo** pour que vous puissi
 
 ### 🧪 Comment tester en mode démo :
 
+**⚠️ Si Flutter n'est pas installé sur votre système :**
+- **Windows** → Consultez [INSTALL_WINDOWS.md](INSTALL_WINDOWS.md) - Guide complet
+- **macOS/Linux** → https://docs.flutter.dev/get-started/install
+
+**Une fois Flutter installé :**
+
 ```bash
-# Cloner le repo
+# Cloner le repo (si pas déjà fait)
 git clone https://github.com/LeR08/bmvRR.git
 cd bmvRR
 
 # Installer les dépendances
 flutter pub get
 
-# Lancer l'app
+# Option 1 : Lancer dans Chrome (le plus rapide)
+flutter run -d chrome
+
+# Option 2 : Lancer sur émulateur/appareil Android
 flutter run
 ```
 
