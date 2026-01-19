@@ -1,0 +1,391 @@
+[
+  {
+    "id": "quiz_001",
+    "title": "Communication à distance",
+    "description": "Évaluez la qualité de votre communication avec votre partenaire",
+    "type": "precise",
+    "mode": "both",
+    "difficulty": "medium",
+    "isPremium": false,
+    "requiredTier": null,
+    "estimatedMinutes": 10,
+    "tags": ["communication", "relation", "distance"],
+    "imageUrl": null,
+    "seriesId": null,
+    "orderInSeries": null,
+    "createdAt": "2026-01-15T10:00:00Z",
+    "updatedAt": "2026-01-15T10:00:00Z",
+    "questions": [
+      {
+        "id": "q1",
+        "text": "À quelle fréquence communiquez-vous avec votre partenaire ?",
+        "type": "multipleChoice",
+        "order": 1,
+        "imageUrl": null,
+        "explanation": null,
+        "answers": [
+          {
+            "id": "a1",
+            "text": "Plusieurs fois par jour",
+            "value": 5,
+            "category": null
+          },
+          {
+            "id": "a2",
+            "text": "Une fois par jour",
+            "value": 4,
+            "category": null
+          },
+          {
+            "id": "a3",
+            "text": "Quelques fois par semaine",
+            "value": 3,
+            "category": null
+          },
+          {
+            "id": "a4",
+            "text": "Rarement",
+            "value": 1,
+            "category": null
+          }
+        ]
+      },
+      {
+        "id": "q2",
+        "text": "Vous sentez-vous écouté(e) par votre partenaire ?",
+        "type": "scale",
+        "order": 2,
+        "imageUrl": null,
+        "explanation": null,
+        "answers": [
+          {"id": "s1", "text": "Pas du tout", "value": 1, "category": null},
+          {"id": "s2", "text": "Un peu", "value": 2, "category": null},
+          {"id": "s3", "text": "Moyennement", "value": 3, "category": null},
+          {"id": "s4", "text": "Beaucoup", "value": 4, "category": null},
+          {"id": "s5", "text": "Totalement", "value": 5, "category": null}
+        ]
+      },
+      {
+        "id": "q3",
+        "text": "Quels moyens de communication utilisez-vous ?",
+        "type": "multiSelect",
+        "order": 3,
+        "imageUrl": null,
+        "explanation": null,
+        "answers": [
+          {"id": "m1", "text": "Messages texte", "value": 1, "category": null},
+          {"id": "m2", "text": "Appels vocaux", "value": 2, "category": null},
+          {"id": "m3", "text": "Appels vidéo", "value": 3, "category": null},
+          {"id": "m4", "text": "Lettres", "value": 1, "category": null}
+        ]
+      },
+      {
+        "id": "q4",
+        "text": "Partagez-vous vos préoccupations facilement ?",
+        "type": "yesNo",
+        "order": 4,
+        "imageUrl": null,
+        "explanation": null,
+        "answers": [
+          {"id": "yn1", "text": "Oui", "value": 5, "category": null},
+          {"id": "yn2", "text": "Non", "value": 1, "category": null}
+        ]
+      },
+      {
+        "id": "q5",
+        "text": "Votre partenaire partage-t-il/elle ses émotions avec vous ?",
+        "type": "scale",
+        "order": 5,
+        "imageUrl": null,
+        "explanation": null,
+        "answers": [
+          {"id": "s1_5", "text": "Jamais", "value": 1, "category": null},
+          {"id": "s2_5", "text": "Rarement", "value": 2, "category": null},
+          {"id": "s3_5", "text": "Parfois", "value": 3, "category": null},
+          {"id": "s4_5", "text": "Souvent", "value": 4, "category": null},
+          {"id": "s5_5", "text": "Toujours", "value": 5, "category": null}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "quiz_002",
+    "title": "Test de compatibilité astrologique",
+    "description": "Découvrez votre compatibilité selon les signes astrologiques (pour le fun !)",
+    "type": "astrology",
+    "mode": "couple",
+    "difficulty": "easy",
+    "isPremium": false,
+    "requiredTier": null,
+    "estimatedMinutes": 5,
+    "tags": ["astrologie", "fun", "compatibilité"],
+    "imageUrl": null,
+    "seriesId": null,
+    "orderInSeries": null,
+    "createdAt": "2026-01-16T10:00:00Z",
+    "updatedAt": "2026-01-16T10:00:00Z",
+    "questions": [
+      {
+        "id": "q_a1",
+        "text": "Quel est votre signe astrologique ?",
+        "type": "multipleChoice",
+        "order": 1,
+        "imageUrl": null,
+        "explanation": null,
+        "answers": [
+          {"id": "sign1", "text": "Bélier", "value": 1, "category": "fire"},
+          {"id": "sign2", "text": "Taureau", "value": 2, "category": "earth"},
+          {"id": "sign3", "text": "Gémeaux", "value": 3, "category": "air"},
+          {"id": "sign4", "text": "Cancer", "value": 4, "category": "water"},
+          {"id": "sign5", "text": "Lion", "value": 5, "category": "fire"},
+          {"id": "sign6", "text": "Vierge", "value": 6, "category": "earth"},
+          {"id": "sign7", "text": "Balance", "value": 7, "category": "air"},
+          {"id": "sign8", "text": "Scorpion", "value": 8, "category": "water"},
+          {"id": "sign9", "text": "Sagittaire", "value": 9, "category": "fire"},
+          {"id": "sign10", "text": "Capricorne", "value": 10, "category": "earth"},
+          {"id": "sign11", "text": "Verseau", "value": 11, "category": "air"},
+          {"id": "sign12", "text": "Poissons", "value": 12, "category": "water"}
+        ]
+      },
+      {
+        "id": "q_a2",
+        "text": "Quelle qualité recherchez-vous chez votre partenaire ?",
+        "type": "multipleChoice",
+        "order": 2,
+        "imageUrl": null,
+        "explanation": null,
+        "answers": [
+          {"id": "trait1", "text": "L'honnêteté", "value": 4, "category": null},
+          {"id": "trait2", "text": "L'humour", "value": 3, "category": null},
+          {"id": "trait3", "text": "La passion", "value": 5, "category": null},
+          {"id": "trait4", "text": "La stabilité", "value": 4, "category": null}
+        ]
+      },
+      {
+        "id": "q_a3",
+        "text": "Comment gérez-vous les conflits ?",
+        "type": "multipleChoice",
+        "order": 3,
+        "imageUrl": null,
+        "explanation": null,
+        "answers": [
+          {"id": "conf1", "text": "Je discute calmement", "value": 5, "category": null},
+          {"id": "conf2", "text": "J'évite le conflit", "value": 2, "category": null},
+          {"id": "conf3", "text": "Je m'exprime avec passion", "value": 3, "category": null},
+          {"id": "conf4", "text": "J'ai besoin de temps pour réfléchir", "value": 4, "category": null}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "quiz_003",
+    "title": "Gérer la jalousie à distance",
+    "description": "Explorez vos sentiments et apprenez à gérer la jalousie dans votre relation",
+    "type": "precise",
+    "mode": "both",
+    "difficulty": "medium",
+    "isPremium": true,
+    "requiredTier": "solo",
+    "estimatedMinutes": 12,
+    "tags": ["jalousie", "confiance", "émotions"],
+    "imageUrl": null,
+    "seriesId": null,
+    "orderInSeries": null,
+    "createdAt": "2026-01-17T10:00:00Z",
+    "updatedAt": "2026-01-17T10:00:00Z",
+    "questions": [
+      {
+        "id": "q_j1",
+        "text": "Ressentez-vous de la jalousie dans votre relation ?",
+        "type": "scale",
+        "order": 1,
+        "imageUrl": null,
+        "explanation": null,
+        "answers": [
+          {"id": "j1_1", "text": "Jamais", "value": 1, "category": null},
+          {"id": "j1_2", "text": "Rarement", "value": 2, "category": null},
+          {"id": "j1_3", "text": "Parfois", "value": 3, "category": null},
+          {"id": "j1_4", "text": "Souvent", "value": 4, "category": null},
+          {"id": "j1_5", "text": "Très souvent", "value": 5, "category": null}
+        ]
+      },
+      {
+        "id": "q_j2",
+        "text": "Votre partenaire vous rassure-t-il/elle régulièrement ?",
+        "type": "yesNo",
+        "order": 2,
+        "imageUrl": null,
+        "explanation": null,
+        "answers": [
+          {"id": "j2_yes", "text": "Oui", "value": 5, "category": null},
+          {"id": "j2_no", "text": "Non", "value": 1, "category": null}
+        ]
+      },
+      {
+        "id": "q_j3",
+        "text": "Faites-vous confiance à votre partenaire ?",
+        "type": "scale",
+        "order": 3,
+        "imageUrl": null,
+        "explanation": null,
+        "answers": [
+          {"id": "j3_1", "text": "Pas du tout", "value": 1, "category": null},
+          {"id": "j3_2", "text": "Un peu", "value": 2, "category": null},
+          {"id": "j3_3", "text": "Moyennement", "value": 3, "category": null},
+          {"id": "j3_4", "text": "Beaucoup", "value": 4, "category": null},
+          {"id": "j3_5", "text": "Complètement", "value": 5, "category": null}
+        ]
+      },
+      {
+        "id": "q_j4",
+        "text": "Comment réagissez-vous quand vous ressentez de la jalousie ?",
+        "type": "multipleChoice",
+        "order": 4,
+        "imageUrl": null,
+        "explanation": null,
+        "answers": [
+          {"id": "react1", "text": "J'en parle à mon partenaire", "value": 5, "category": null},
+          {"id": "react2", "text": "Je garde ça pour moi", "value": 2, "category": null},
+          {"id": "react3", "text": "Je deviens distant(e)", "value": 1, "category": null},
+          {"id": "react4", "text": "J'essaie de comprendre d'où ça vient", "value": 4, "category": null}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "quiz_004",
+    "title": "Nos projets d'avenir",
+    "description": "Partagez vos visions et construisez ensemble votre futur",
+    "type": "precise",
+    "mode": "couple",
+    "difficulty": "medium",
+    "isPremium": true,
+    "requiredTier": "couple",
+    "estimatedMinutes": 15,
+    "tags": ["avenir", "projets", "couple"],
+    "imageUrl": null,
+    "seriesId": null,
+    "orderInSeries": null,
+    "createdAt": "2026-01-18T10:00:00Z",
+    "updatedAt": "2026-01-18T10:00:00Z",
+    "questions": [
+      {
+        "id": "q_f1",
+        "text": "Voyez-vous un futur ensemble ?",
+        "type": "yesNo",
+        "order": 1,
+        "imageUrl": null,
+        "explanation": null,
+        "answers": [
+          {"id": "f1_yes", "text": "Oui, absolument", "value": 5, "category": null},
+          {"id": "f1_no", "text": "Je ne suis pas sûr(e)", "value": 2, "category": null}
+        ]
+      },
+      {
+        "id": "q_f2",
+        "text": "Avez-vous discuté de vos projets de vie ensemble ?",
+        "type": "scale",
+        "order": 2,
+        "imageUrl": null,
+        "explanation": null,
+        "answers": [
+          {"id": "f2_1", "text": "Jamais", "value": 1, "category": null},
+          {"id": "f2_2", "text": "Rarement", "value": 2, "category": null},
+          {"id": "f2_3", "text": "Parfois", "value": 3, "category": null},
+          {"id": "f2_4", "text": "Souvent", "value": 4, "category": null},
+          {"id": "f2_5", "text": "Très souvent", "value": 5, "category": null}
+        ]
+      },
+      {
+        "id": "q_f3",
+        "text": "Quand envisagez-vous de ne plus être à distance ?",
+        "type": "multipleChoice",
+        "order": 3,
+        "imageUrl": null,
+        "explanation": null,
+        "answers": [
+          {"id": "time1", "text": "Dans les 6 prochains mois", "value": 5, "category": null},
+          {"id": "time2", "text": "Dans l'année", "value": 4, "category": null},
+          {"id": "time3", "text": "Dans 2-3 ans", "value": 3, "category": null},
+          {"id": "time4", "text": "Aucune idée", "value": 1, "category": null}
+        ]
+      },
+      {
+        "id": "q_f4",
+        "text": "Êtes-vous d'accord sur vos objectifs de vie ?",
+        "type": "scale",
+        "order": 4,
+        "imageUrl": null,
+        "explanation": null,
+        "answers": [
+          {"id": "f4_1", "text": "Pas du tout", "value": 1, "category": null},
+          {"id": "f4_2", "text": "Partiellement", "value": 2, "category": null},
+          {"id": "f4_3", "text": "Sur certains points", "value": 3, "category": null},
+          {"id": "f4_4", "text": "Sur beaucoup de points", "value": 4, "category": null},
+          {"id": "f4_5", "text": "Complètement", "value": 5, "category": null}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "quiz_005",
+    "title": "Quiz fun : Connaissez-vous vraiment votre partenaire ?",
+    "description": "Un quiz ludique pour tester vos connaissances mutuelles",
+    "type": "fun",
+    "mode": "couple",
+    "difficulty": "easy",
+    "isPremium": false,
+    "requiredTier": null,
+    "estimatedMinutes": 8,
+    "tags": ["fun", "connaissance", "couple"],
+    "imageUrl": null,
+    "seriesId": null,
+    "orderInSeries": null,
+    "createdAt": "2026-01-19T10:00:00Z",
+    "updatedAt": "2026-01-19T10:00:00Z",
+    "questions": [
+      {
+        "id": "q_fun1",
+        "text": "Quelle est la couleur préférée de votre partenaire ?",
+        "type": "multipleChoice",
+        "order": 1,
+        "imageUrl": null,
+        "explanation": "Discutez de vos goûts ensemble !",
+        "answers": [
+          {"id": "color1", "text": "Bleu", "value": 1, "category": null},
+          {"id": "color2", "text": "Rouge", "value": 1, "category": null},
+          {"id": "color3", "text": "Vert", "value": 1, "category": null},
+          {"id": "color4", "text": "Jaune", "value": 1, "category": null}
+        ]
+      },
+      {
+        "id": "q_fun2",
+        "text": "Quel est son film préféré ?",
+        "type": "multipleChoice",
+        "order": 2,
+        "imageUrl": null,
+        "explanation": null,
+        "answers": [
+          {"id": "movie1", "text": "Comédie romantique", "value": 1, "category": null},
+          {"id": "movie2", "text": "Action", "value": 1, "category": null},
+          {"id": "movie3", "text": "Science-fiction", "value": 1, "category": null},
+          {"id": "movie4", "text": "Drame", "value": 1, "category": null}
+        ]
+      },
+      {
+        "id": "q_fun3",
+        "text": "Que préfère-t-il/elle faire le week-end ?",
+        "type": "multipleChoice",
+        "order": 3,
+        "imageUrl": null,
+        "explanation": null,
+        "answers": [
+          {"id": "activity1", "text": "Sortir avec des amis", "value": 1, "category": null},
+          {"id": "activity2", "text": "Rester à la maison", "value": 1, "category": null},
+          {"id": "activity3", "text": "Faire du sport", "value": 1, "category": null},
+          {"id": "activity4", "text": "Découvrir de nouveaux endroits", "value": 1, "category": null}
+        ]
+      }
+    ]
+  }
+]
