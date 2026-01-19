@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'config/app_config.dart';
 import 'config/firebase_config.dart';
 import 'providers/auth_provider.dart';
 import 'providers/quiz_provider.dart';
@@ -11,11 +12,17 @@ import 'utils/constants.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialiser Firebase
-  await FirebaseConfig.initialize();
+  // Afficher la configuration
+  AppConfig.printConfig();
 
-  // Initialiser les ads
-  await AdsService().initialize();
+  // Initialiser Firebase seulement si pas en mode démo
+  if (!AppConfig.isDemoMode) {
+    await FirebaseConfig.initialize();
+    // Initialiser les ads
+    await AdsService().initialize();
+  } else {
+    print('⚠️  Mode démo activé - Firebase et AdMob désactivés');
+  }
 
   runApp(const CouplesDistanceApp());
 }
@@ -34,7 +41,9 @@ class CouplesDistanceApp extends StatelessWidget {
         title: 'Couples Distance',
         debugShowCheckedModeBanner: false,
         theme: _buildTheme(),
-        home: const AuthWrapper(),
+        home: AppConfig.isDemoMode
+          ? const DemoWrapper(child: AuthWrapper())
+          : const AuthWrapper(),
       ),
     );
   }
@@ -128,7 +137,7 @@ class AuthWrapper extends StatelessWidget {
     return Consumer<AuthProvider>(
       builder: (context, authProvider, child) {
         // Afficher un écran de chargement pendant la vérification
-        if (authProvider.firebaseUser == null && authProvider.isLoading) {
+        if (!AppConfig.isDemoMode && authProvider.firebaseUser == null && authProvider.isLoading) {
           return const Scaffold(
             body: Center(
               child: CircularProgressIndicator(),
@@ -144,6 +153,28 @@ class AuthWrapper extends StatelessWidget {
         // Sinon, afficher l'écran de connexion
         return const SignInScreen();
       },
+    );
+  }
+}
+
+// Wrapper pour afficher une bannière de mode démo
+class DemoWrapper extends StatelessWidget {
+  final Widget child;
+
+  const DemoWrapper({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Banner(
+      message: '🎭 MODE DÉMO',
+      location: BannerLocation.topEnd,
+      color: AppColors.accent,
+      textStyle: const TextStyle(
+        color: Colors.white,
+        fontSize: 10,
+        fontWeight: FontWeight.bold,
+      ),
+      child: child,
     );
   }
 }

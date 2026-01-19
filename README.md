@@ -2,6 +2,50 @@
 
 Application mobile pour couples en relation à distance.
 
+## 🎭 MODE DÉMO - Testez sans Firebase !
+
+L'application est configurée par défaut en **mode démo** pour que vous puissiez la tester immédiatement **sans configuration Firebase**.
+
+### ✅ Avantages du mode démo :
+- 🚀 **Aucune configuration requise** - L'app fonctionne immédiatement
+- 📦 **Données mockées** - 5 quiz d'exemple préchargés
+- 🔐 **Connexion simplifiée** - Utilisez n'importe quel email/mot de passe (min. 6 caractères)
+- 💾 **Pas de backend** - Toutes les données restent locales
+- 🎨 **Interface complète** - Testez toutes les fonctionnalités UI
+
+### 🧪 Comment tester en mode démo :
+
+```bash
+# Cloner le repo
+git clone https://github.com/LeR08/bmvRR.git
+cd bmvRR
+
+# Installer les dépendances
+flutter pub get
+
+# Lancer l'app
+flutter run
+```
+
+**C'est tout ! L'application se lance en mode démo automatiquement.**
+
+Vous verrez une bannière "🎭 MODE DÉMO" en haut à droite de l'écran.
+
+### 🔄 Passer en mode production :
+
+Une fois Firebase configuré (voir [SETUP.md](SETUP.md)) :
+
+1. Ouvrir `lib/config/app_config.dart`
+2. Changer `isDemoMode` de `true` à `false`
+3. Relancer l'app
+
+```dart
+// lib/config/app_config.dart
+static const bool isDemoMode = false; // ← Changer ici
+```
+
+---
+
 ## 🎯 Fonctionnalités
 
 ### V1 (MVP)

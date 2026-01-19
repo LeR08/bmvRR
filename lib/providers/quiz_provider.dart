@@ -1,14 +1,19 @@
 import 'package:flutter/foundation.dart';
+import '../config/app_config.dart';
 import '../models/quiz.dart';
 import '../models/quiz_result.dart';
 import '../models/quiz_series.dart';
 import '../models/user.dart';
+import '../services/mock_quiz_service.dart';
+import '../services/mock_user_service.dart';
 import '../services/quiz_service.dart';
 import '../services/user_service.dart';
 
 class QuizProvider with ChangeNotifier {
-  final QuizService _quizService = QuizService();
-  final UserService _userService = UserService();
+  final QuizService? _quizService = AppConfig.isDemoMode ? null : QuizService();
+  final UserService? _userService = AppConfig.isDemoMode ? null : UserService();
+  final MockQuizService? _mockQuizService = AppConfig.isDemoMode ? MockQuizService() : null;
+  final MockUserService? _mockUserService = AppConfig.isDemoMode ? MockUserService() : null;
 
   List<Quiz> _allQuizzes = [];
   List<Quiz> _accessibleQuizzes = [];
@@ -41,8 +46,13 @@ class QuizProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      _allQuizzes = await _quizService.getAllQuizzes();
-      _accessibleQuizzes = await _quizService.getAccessibleQuizzes(user);
+      if (AppConfig.isDemoMode) {
+        _allQuizzes = await _mockQuizService!.getAllQuizzes();
+        _accessibleQuizzes = await _mockQuizService!.getAccessibleQuizzes(user);
+      } else {
+        _allQuizzes = await _quizService!.getAllQuizzes();
+        _accessibleQuizzes = await _quizService!.getAccessibleQuizzes(user);
+      }
       _isLoading = false;
       notifyListeners();
     } catch (e) {
@@ -54,7 +64,11 @@ class QuizProvider with ChangeNotifier {
 
   Future<void> loadSeries() async {
     try {
-      _allSeries = await _quizService.getAllSeries();
+      if (AppConfig.isDemoMode) {
+        _allSeries = await _mockQuizService!.getAllSeries();
+      } else {
+        _allSeries = await _quizService!.getAllSeries();
+      }
       notifyListeners();
     } catch (e) {
       debugPrint('Error loading series: $e');
@@ -63,7 +77,11 @@ class QuizProvider with ChangeNotifier {
 
   Future<void> loadUserResults(String userId) async {
     try {
-      _userResults = await _quizService.getUserResults(userId);
+      if (AppConfig.isDemoMode) {
+        _userResults = await _mockQuizService!.getUserResults(userId);
+      } else {
+        _userResults = await _quizService!.getUserResults(userId);
+      }
       notifyListeners();
     } catch (e) {
       debugPrint('Error loading user results: $e');
@@ -128,11 +146,15 @@ class QuizProvider with ChangeNotifier {
         isSharedWithPartner: partnerId != null,
       );
 
-      await _quizService.saveQuizResult(result);
-
-      // Mettre à jour les statistiques utilisateur
-      final timeSpentMinutes = (timeSpent / 60).ceil();
-      await _userService.incrementQuizCompleted(userId, timeSpentMinutes);
+      if (AppConfig.isDemoMode) {
+        await _mockQuizService!.saveQuizResult(result);
+        final timeSpentMinutes = (timeSpent / 60).ceil();
+        await _mockUserService!.incrementQuizCompleted(userId, timeSpentMinutes);
+      } else {
+        await _quizService!.saveQuizResult(result);
+        final timeSpentMinutes = (timeSpent / 60).ceil();
+        await _userService!.incrementQuizCompleted(userId, timeSpentMinutes);
+      }
 
       // Réinitialiser l'état
       _currentQuiz = null;
@@ -173,7 +195,11 @@ class QuizProvider with ChangeNotifier {
     String quizId,
   ) async {
     try {
-      return await _quizService.compareResults(userId, partnerId, quizId);
+      if (AppConfig.isDemoMode) {
+        return await _mockQuizService!.compareResults(userId, partnerId, quizId);
+      } else {
+        return await _quizService!.compareResults(userId, partnerId, quizId);
+      }
     } catch (e) {
       debugPrint('Error comparing results: $e');
       return null;

@@ -1,12 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import '../config/app_config.dart';
 import '../models/user.dart';
 import '../services/auth_service.dart';
+import '../services/mock_auth_service.dart';
+import '../services/mock_user_service.dart';
 import '../services/user_service.dart';
 
 class AuthProvider with ChangeNotifier {
-  final AuthService _authService = AuthService();
-  final UserService _userService = UserService();
+  final AuthService? _authService = AppConfig.isDemoMode ? null : AuthService();
+  final UserService? _userService = AppConfig.isDemoMode ? null : UserService();
+  final MockAuthService? _mockAuthService = AppConfig.isDemoMode ? MockAuthService() : null;
+  final MockUserService? _mockUserService = AppConfig.isDemoMode ? MockUserService() : null;
 
   User? _firebaseUser;
   AppUser? _appUser;
@@ -17,10 +22,21 @@ class AuthProvider with ChangeNotifier {
   AppUser? get appUser => _appUser;
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
-  bool get isAuthenticated => _firebaseUser != null;
+  bool get isAuthenticated => AppConfig.isDemoMode ? _appUser != null : _firebaseUser != null;
 
   AuthProvider() {
-    _authService.authStateChanges.listen(_onAuthStateChanged);
+    if (AppConfig.isDemoMode) {
+      // En mode démo, connecter automatiquement l'utilisateur de démo
+      _loadDemoUser();
+    } else {
+      _authService!.authStateChanges.listen(_onAuthStateChanged);
+    }
+  }
+
+  Future<void> _loadDemoUser() async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    _appUser = MockAuthService.demoUser;
+    notifyListeners();
   }
 
   void _onAuthStateChanged(User? user) async {
@@ -28,7 +44,7 @@ class AuthProvider with ChangeNotifier {
 
     if (user != null) {
       // Charger les données utilisateur
-      _appUser = await _userService.getUser(user.uid);
+      _appUser = await _userService!.getUser(user.uid);
     } else {
       _appUser = null;
     }
@@ -46,17 +62,25 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      _appUser = await _authService.signUpWithEmail(
-        email: email,
-        password: password,
-        displayName: displayName,
-      );
+      if (AppConfig.isDemoMode) {
+        _appUser = await _mockAuthService!.signUpWithEmailAndPassword(
+          email,
+          password,
+          displayName ?? 'Utilisateur',
+        );
+      } else {
+        _appUser = await _authService!.signUpWithEmail(
+          email: email,
+          password: password,
+          displayName: displayName,
+        );
+      }
 
       _isLoading = false;
       notifyListeners();
       return _appUser != null;
     } on FirebaseAuthException catch (e) {
-      _errorMessage = _authService.getErrorMessage(e);
+      _errorMessage = AppConfig.isDemoMode ? e.toString() : _authService!.getErrorMessage(e);
       _isLoading = false;
       notifyListeners();
       return false;
@@ -77,16 +101,20 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      _appUser = await _authService.signInWithEmail(
-        email: email,
-        password: password,
-      );
+      if (AppConfig.isDemoMode) {
+        _appUser = await _mockAuthService!.signInWithEmailAndPassword(email, password);
+      } else {
+        _appUser = await _authService!.signInWithEmail(
+          email: email,
+          password: password,
+        );
+      }
 
       _isLoading = false;
       notifyListeners();
       return _appUser != null;
     } on FirebaseAuthException catch (e) {
-      _errorMessage = _authService.getErrorMessage(e);
+      _errorMessage = AppConfig.isDemoMode ? e.toString() : _authService!.getErrorMessage(e);
       _isLoading = false;
       notifyListeners();
       return false;
@@ -99,7 +127,11 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<void> signOut() async {
-    await _authService.signOut();
+    if (AppConfig.isDemoMode) {
+      await _mockAuthService!.signOut();
+    } else {
+      await _authService!.signOut();
+    }
     _firebaseUser = null;
     _appUser = null;
     notifyListeners();
@@ -111,12 +143,16 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      await _authService.resetPassword(email);
+      if (AppConfig.isDemoMode) {
+        await _mockAuthService!.sendPasswordResetEmail(email);
+      } else {
+        await _authService!.resetPassword(email);
+      }
       _isLoading = false;
       notifyListeners();
       return true;
     } on FirebaseAuthException catch (e) {
-      _errorMessage = _authService.getErrorMessage(e);
+      _errorMessage = AppConfig.isDemoMode ? e.toString() : _authService!.getErrorMessage(e);
       _isLoading = false;
       notifyListeners();
       return false;
@@ -129,9 +165,16 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<void> refreshUser() async {
-    if (_firebaseUser != null) {
-      _appUser = await _userService.getUser(_firebaseUser!.uid);
-      notifyListeners();
+    if (AppConfig.isDemoMode) {
+      if (_appUser != null) {
+        _appUser = await _mockUserService!.getUser(_appUser!.uid);
+        notifyListeners();
+      }
+    } else {
+      if (_firebaseUser != null) {
+        _appUser = await _userService!.getUser(_firebaseUser!.uid);
+        notifyListeners();
+      }
     }
   }
 
